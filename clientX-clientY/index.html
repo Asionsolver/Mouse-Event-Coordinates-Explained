@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClientX/Y Example</title>
+    <style>
+      body {
+        height: 2000px; /* Make page scrollable */
+        background: linear-gradient(to bottom, #1b1b1b, #0f0c0c);
+      }
+      #output {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background: lightyellow;
+        padding: 5px;
+        border: 1px solid gold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="output">Move mouse here...</div>
+
+    <script>
+      document.addEventListener("mousemove", function (event) {
+        const outputDiv = document.getElementById("output");
+        outputDiv.textContent = `clientX: ${event.clientX}, clientY: ${event.clientY}`;
+        // outputDiv.style.left = `${event.clientX + 90}px`;
+        // outputDiv.style.top = `${event.clientY + -15}px`;
+        // outputDiv.style.transform = "translate(-50%, -50%)";
+        // outputDiv.style.transition = "left 0.1s, top 0.1s";
+        // outputDiv.style.pointerEvents = "none"; // Prevent mouse events on the div
+        // outputDiv.style.zIndex = "1000"; // Ensure the div is on top
+        // outputDiv.style.backgroundColor = "rgba(255, 255, 255, 0.8)"; // Semi-transparent background
+        // outputDiv.style.borderRadius = "5px"; // Rounded corners
+        // outputDiv.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)"; // Shadow effect
+        // outputDiv.style.fontSize = "14px"; // Font size
+        // outputDiv.style.fontFamily = "Arial, sans-serif"; // Font family
+        // outputDiv.style.color = "#333"; // Text color
+        // outputDiv.style.padding = "5px 10px"; // Padding
+        // outputDiv.style.whiteSpace = "nowrap"; // Prevent text wrapping
+        // outputDiv.style.textAlign = "center"; // Center text
+        // outputDiv.style.lineHeight = "1.5"; // Line height
+        // outputDiv.style.opacity = "0.9"; // Opacity
+        // outputDiv.style.transition = "opacity 0.3s"; // Fade effect
+        // setTimeout(() => {
+        //   outputDiv.style.opacity = "1"; // Fade in
+        // }, 0);
+        // setTimeout(() => {
+        //   outputDiv.style.opacity = "0"; // Fade out after 1 second
+        // }, 1000);
+        // setTimeout(() => {
+        //   outputDiv.style.opacity = "1"; // Fade in again
+        // }, 2000);
+        // setTimeout(() => {
+        //   outputDiv.style.opacity = "0"; // Fade out after 3 seconds
+        // }, 3000);
+      });
+    </script>
+  </body>
+</html>

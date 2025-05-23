@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <style>
+      #container {
+        height: 300px;
+        overflow-y: scroll;
+        border: 1px solid #aaa;
+        padding: 10px;
+      }
+      .item {
+        margin: 5px;
+        padding: 5px;
+        background: #def;
+        cursor: grab;
+      }
+    </style> -->
+    <style>
+      #tooltip {
+        position: absolute;
+        padding: 6px 10px;
+        background: #333;
+        color: #fff;
+        border-radius: 4px;
+        pointer-events: none;
+        white-space: nowrap;
+        transform: translate(-50%, -120%);
+        transition: transform 0.1s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="container">
+      <div class="item">Drag me!</div> -->
+    <!-- …repeat so container scrolls… -->
+    <!-- <div class="item">Item N</div>
+    </div> -->
+    <div
+      id="hover-area"
+      style="margin: 100px; border: 1px solid #ccc; padding: 50px"
+    >
+      Hover over me!
+    </div>
+    <div id="tooltip" hidden>Tooltip text</div>
+  </body>
+  <script>
+    // let dragging = null,
+    //   offsetX = 0,
+    //   offsetY = 0;
+
+    // document.querySelectorAll(".item").forEach((item) => {
+    //   item.addEventListener("mousedown", (e) => {
+    //     dragging = item.cloneNode(true);
+    //     document.body.appendChild(dragging);
+    //     // Capture offset within the element
+    //     offsetX = e.clientX - item.getBoundingClientRect().left;
+    //     offsetY = e.clientY - item.getBoundingClientRect().top;
+    //     dragging.style.position = "absolute";
+    //     dragging.style.pointerEvents = "none";
+    //   });
+    // });
+
+    // document.addEventListener("mousemove", (e) => {
+    //   if (!dragging) return;
+    //   // Use clientX/Y to keep element under cursor in viewport space
+    //   dragging.style.left = `${e.clientX - offsetX}px`;
+    //   dragging.style.top = `${e.clientY - offsetY}px`;
+    // });
+
+    // document.addEventListener("mouseup", () => {
+    //   if (dragging) {
+    //     dragging.remove();
+    //     dragging = null;
+    //   }
+    // });
+
+    const area = document.getElementById("hover-area");
+    const tip = document.getElementById("tooltip");
+
+    area.addEventListener("mouseenter", () => (tip.hidden = false));
+    area.addEventListener("mouseleave", () => (tip.hidden = true));
+
+    area.addEventListener("mousemove", (e) => {
+      // 1) Start with page coords so scroll is included
+      let x = e.pageX;
+      let y = e.pageY;
+
+      // 2) Apply offset so tip sits above cursor
+      const offset = 15;
+      y -= offset;
+
+      // 3) Ensure tip doesn't go off right/bottom of viewport
+      const { innerWidth, innerHeight } = window;
+      const { offsetWidth, offsetHeight } = tip;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+
+      if (clientX + offsetWidth / 2 > innerWidth) {
+        tip.style.transform = "translate(-100%, -120%)";
+      } else if (clientX - offsetWidth / 2 < 0) {
+        tip.style.transform = "translate(0%, -120%)";
+      } else {
+        tip.style.transform = "translate(-50%, -120%)";
+      }
+
+      // 4) Position using page coords so scroll is respected
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+    });
+  </script>
+</html>

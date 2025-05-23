@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PageX/Y Example</title>
+    <style>
+      body {
+        height: 2000px; /* Make page scrollable */
+      }
+      #output {
+        position: fixed;
+        top: 30px;
+        left: 10px;
+        background: lightblue;
+        padding: 5px;
+        border: 1px solid blue;
+      }
+      #scrollInfo {
+        position: fixed;
+        top: 60px;
+        left: 10px;
+        background: lightgray;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="output">Move mouse here...</div>
+    <div id="scrollInfo">Scroll: Y=0</div>
+
+    <script>
+      document.addEventListener("mousemove", function (event) {
+        const outputDiv = document.getElementById("output");
+        outputDiv.textContent = `pageX: ${event.pageX}, pageY: ${event.pageY}`;
+      });
+
+      window.addEventListener("scroll", function () {
+        document.getElementById(
+          "scrollInfo"
+        ).textContent = `Scroll: Y=${window.scrollY}`;
+      });
+
+      document.addEventListener("click", function (event) {
+        console.log("clientX:", event.clientX, "clientY:", event.clientY);
+        console.log("pageX:", event.pageX, "pageY:", event.pageY);
+        console.log("screenX:", event.screenX, "screenY:", event.screenY);
+      });
+    </script>
+  </body>
+</html>
